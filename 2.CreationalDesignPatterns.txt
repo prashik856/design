@@ -1,0 +1,12 @@
+Creational design patterns are concerned with the way of creating objects.
+
+These design patterns are used when a decision must be made at the time of instantiation of a class (i.e. creating an object of a class).
+
+Types of Creational Design Patterns:
+1. Factory Method Pattern
+2. Abstract Factory Pattern
+3. Singleton Pattern
+4. Prototype Pattern
+5. Builder Pattern
+6. Object Pool Pattern
+

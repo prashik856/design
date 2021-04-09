@@ -1,0 +1,69 @@
+Conceptual and Technical Design 
+
+Normally
+
+Product Backlog => Sprint Backlog -> Iteration(Spring, Daily Standup) -> Potentially Shippable Product Increment
+
+Consider the scenario:
+We are hired to build a house.
+Before the foundation, we need to understand what the homeowner wants.
+This starting point is known as Eliciting Requirements.
+> Listening to clients but also clarifying the things the client has not told you 
+> E.g. Do you anticipate making a kitchen?
+> Should the rooms all be the same size?
+> How big should the house be overall?
+> Are there external design constraints?
+> Should the house face a particular direction?
+> Which room should be fartest apart?
+> Which room should be close together?
+
+Producing a Conceptual Design then a Techincal Design:
+Conceptual Mockups and Technical Diagrams.
+
+Components and their Connections.
+E.g. How the rooms should be connected and where they should be located?
+Each connection has a task they need to perform known as Responsibility.
+> Overall house has it's own Responsibility.
+Every room has it's own responsibility.
+We must finish these conceptual designs before moving on to Technical Designs.
+
+The Clearer our Conceptual Design is, the better our Techinical Designs will be.
+
+
+Now, coming to Technical Designs.
+Splitting components into smaller and smaller components.
+E.g. Gym will require it's own components.
+Techinical Diagrams express how to address specific issues like this.
+
+Conceptual Mockups shoudl catch what the client wants.
+This is very important.
+Techinical diagrams are then used to build the intended solution.
+
+
+Example:
+Design a website with these requirements:
+As a learner, I want to search for relevant courses through a search page.
+
+Conceptual Design:
+Potential Objects: Course, Search Page, Learner.
+Search is a task of search page Component, and thus responsibility of Search page.
+
+Responsibility of search page:
+> Search 
+
+Search Page component might also relate to:
+Input Field, Search Button, and Result Page.
+
+Search Page thus have connections to Input Field, Search Button and Result Page.
+
+Coming to Technical Designs:
+Refine each component until it is specific enough to be designed in detail.
+
+How to search?
+Suppose we already have a course Database, where we can connect to.
+
+Components:
+Components turn into collections of functions, classes, or other components.
+These pieces then represent a much simpler problem that the developers can individually implement.
+
+Technical Diagrams help to coordinate Development work.

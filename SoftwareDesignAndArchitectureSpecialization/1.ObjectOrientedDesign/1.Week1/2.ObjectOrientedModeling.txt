@@ -1,0 +1,16 @@
+Object Oriented Modeling
+
+When solving a problem, object oriented modeling involves the practice of 
+representing key concepts through objects in your software.
+Depending on the problem, many concepts, even instances of people, places, or things,
+become distinct objects in the software.
+
+Example seminar room:
+Ojbects are:
+room itself:
+chairs, table, projectors, Person etc.
+Each of these objects has it's own attributes.
+Each object has it's own behaviour as well.
+Person might also be object. It has various attributes and it's own behaviour.
+Each object has it's own information
+Think of everything as object. Even living things

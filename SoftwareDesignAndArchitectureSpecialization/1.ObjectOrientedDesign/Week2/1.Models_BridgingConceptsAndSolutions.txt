@@ -1,0 +1,19 @@
+> Conceptual Design
+> Technical Design 
+
+If Data Processing Problem: we use Top Down Programming
+
+Object Oriented Analysis (Conceptual Design).
+Object Oriented Design (Technical Design).
+
+Our goal is to create Models of each object. 
+Initially the focus will be on the Entity Ojbects from the problem space.
+
+In solution space, we have control objects which receive and Coordinate actions.
+
+Then we also have Boundary objects that connects to services outside our system.
+
+These models are often described with a Visual notation caled Unified Modeling Language (UML)
+
+We have different types of UML diagrams to focus on different software issues.
+

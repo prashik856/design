@@ -1,0 +1,36 @@
+Competing Qualities
+
+Satisfying Requirements:
+Some software design decisions will involve tradeoffs in different quality
+attributes, such as Performance, Convenience, and Security.
+
+What qualities do you often balance in designing software?
+> Performance
+> Maintainance
+> Scalability
+> Security, code quality and time to market
+> Quality is the real job.
+> Balancing competing concerns
+> What are non negotiables
+> What could we negotiate on.
+
+Context.
+
+Functinal Requirements:
+For software, there are functional requirements that describe what the system or application is
+expected to do.
+
+Non Functional Requirements:
+There are also non functional requirements that specify how well the system or application 
+does what is does.
+Such requirements may describe how well the software runs in particular situations.
+E.g. Minivan and a sportscar have same functions, but the way they do things are very different.
+> How well the parts of the code can evolve? > future changes.
+So > Reusability
+> Flexibility
+> Maintanability
+
+The Required qualities should be verified through techniques like reviews and tests.
+
+Certain qualities can be vaildated with feedback from the end users.
+

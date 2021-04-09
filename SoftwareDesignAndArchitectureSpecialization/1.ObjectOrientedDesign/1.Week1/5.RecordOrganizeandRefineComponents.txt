@@ -1,0 +1,61 @@
+Class Responsibility Collaborator (CRC)
+
+Components, Connections, and Responsibilities when forming a Conceptual Design.
+
+CRC Cards.
+Help organize components into classes, identify their Responsibilities and determine how 
+they will collaborate with each other.
+
+
+Consider a Bank Machine:
+
+Conceptual Design using CRC Card.
+
+CRC Cards are used to record, organize and refine the components in our design.
+
+CRC Card:
+                    Class Name
+        Responsibilities | Collaborators
+
+Collaborators: 
+Collaborators are other classes that the class interacts with to fulfill its Responsibilities
+
+How can we use CRC cards while forming the conceptual design?
+
+                    Bank Customer
+        Responsibilities | Collaborators
+1. Insert Bank card        Bank Machine
+2. Choose operation
+
+                    Bank Machine
+        Responsibilities | Collaborators
+1. Authenticate Bank     | Back Customer 
+customer 
+2. Display task options 
+3. Deposit and withdraw
+4. Check Balances
+
+
+How does a Bank Machine Authenticate the Bank Customer?
+Add another component 
+                    Bank
+        Responsibilities | Collaborators
+
+Bank will communicate via network
+
+                Network
+
+But we want network to be secure,
+we add encryption card.
+                
+                Encryption
+
+Bank Machine itself has many components:
+> Card Reader
+> Keypad
+> Display
+> Cheque Slot 
+> Card Dispenser
+
+Now, each of these classes can be described as their own CRC card.
+

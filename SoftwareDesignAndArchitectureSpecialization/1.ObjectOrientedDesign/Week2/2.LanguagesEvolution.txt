@@ -1,0 +1,53 @@
+Changes in Programming Paradigms to address the latest problems more effectively.
+
+Old Languages: COBOL, Fortran
+
+
+These languages followed Imperative Paradigm:
+COBOL and Fortran followed an imperative paradigm which broke up large programs into smaller programs 
+called subroutines, which are like methods in Java.
+
+Initially, computational time was costly.
+
+To resolve this, we had Global Data
+
+
+1970s languages: Algol 68 and Pascal
+Idea of local variables was introduced.
+
+These supported an ABstract Data Type:
+An abstract data type is a data type that is defined by the programmer and not build into the language.
+An abstract data type is essentially a grouping of related information that is denoted with a type.
+It was a way to organize data in a meaningful way.
+
+In mid 1970s, computer processing time became less expensive while human labor became more expensive.
+
+
+New languages arose:
+C and Modula 2.
+These provided the means to organize programs.
+
+Programs can now be organized into separate files.
+But these languages did not have the functionality of extension. 
+i.e. we could not have data type which is an extension of another data type.
+
+
+In 1980s: The concept of Object oriented design came into play:
+The goal of object oriented design is to:
+-> Make an abstract data type easier to write
+-> Structure a system around abstract data types called classes
+-> Introduce the ability for an abstract data type to extend another
+
+The advantage of this is that, the system will mimic the structure of the problem.
+Meaning any object oriented program is capable of representing real world objects or ideas with more fidelity.
+
+Class files replcae the standard files in C and Modula 2.
+Each class has it's own methods.
+
+Using classes, now ted can compartmentalize the data and how it can be manipulated into their own separate classes 
+
+OOP is Predominant Programming Paradigm.
+Java, c++ and C# (C sharp) are all founded based on object.
+
+By the way, why this big history lesson?
+Because, even today, there are many systems that still use the older languages and design paradigms.

@@ -1,0 +1,50 @@
+ENCAPSULATION:
+
+Bundle data, and functions that manipulate the data, into a self contained object.
+Expose certain data and functions of that object, which can be accessed from other objects.
+Restrict access to certain data and functions to only within that object.
+
+
+Class Diagram using Encapsulation.
+Student
+----------
+-gpa: float
+-degreeProgram: String 
+-----------
++getGPA() : float 
++setGPA(float) : void 
++getDegreeProgram() : String 
++setDegreeProgram(String): void 
+----------------
+
+Here, the '-' sign denotes that these attributes are hidden from outside the class.
+so '-' sign indicates that the method is private.
+
++ indicates that the attribute is public.
+
+
+Getter Methods:
+Getter methods are methods that retrieve data, and their typically begin with get and end 
+with the name of the attribute whose value we will be returing.
+Getters often retrieve a private piece of data.
+
+
+Setter Methods:
+Setter methods change data, and their names typically begin with set and end with the 
+name of the variable we wish to set.
+Setters are used to set a private attribute in a safe way.
+
+
+e.g.
+public class Person{
+    private String name;
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+}
+

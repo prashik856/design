@@ -1,0 +1,134 @@
+We connect the super class and subclass with an arror.
+
+Superclass is at the head of the arrow.
+Subclass is at the tail.
+
+
+The standard way to draw the UML diagram inheritance is to draw arrow upward.
+
+Superclasses are always toward the top.
+sublcasses are always toward the bottom.
+
+The superclasses are the generalized classes and the subclasses are the specialized classes.
+
+Suppose we have a dog class and an Animal class.
+
+The hash symbol is used to communicate that the animal attributes are protected.
+
+Animal 
+---------
+#numberOfLegs: int 
+#numberOfTails: int 
+#name: String
+---------
++walk()
++run()
++eat()
+------------
+^
+|
+Dog 
+------------
+-----------
++playFetch()
+-----------
+
+
+In Java, a protedted attribute or method can only be accessed by:
+- The encapulating class itself.
+- All subclasses 
+- All classes within the same package.
+
+
+In Java, a package is simply a means in which the classes can be organized into a namespace
+that represents those classes.
+
+
+Example of Animal class:
+public abstract class Animal{
+    protected int numberOfLegs;
+    protected int numberOfTails;
+    protected String name;
+
+    public Animal(String petName, int legs, int tails){
+        this.name = petName;
+        this.numberOfLegs = legs;
+        this.numberOfTails = tails;
+    }
+
+    public void walk() { ... }
+    public void run() { ... }
+    public void eat() { ... }
+}
+
+We use the abstract key to denote that this class cannot be instiated. 
+That means that we cannot create an animal object.
+
+public class Dog extends Animal{
+    public Dog(String name, int legs, int tails){
+        super(name, legs, tails);
+    }
+
+    public void playFetch() { ... }
+}
+
+We declared the inheritance in java using the word 'extend'.
+
+We instantiate the classes in java using constructors.
+Classes can have implecit constructors or explicit constructors.
+
+
+public abstract class Animal{
+    protected int numberOfLegs;
+
+    public void walk(){
+        ...
+    }
+}
+In our implementation of Animal class, we have an implecit constructor, since we have not 
+written our own constructor.
+All attributes are assigned to zero or null.
+When using default constructor.
+
+
+public abstract class Animal{
+    protected int numberOfLegs;
+
+    public Animal(int legs){
+        this.numberOfLegs = legs;
+    }
+}
+Here we have an explicit constructor which will let us instiate an animal with however many
+legs we want.
+Explicit constructors are used so that we can assign values to attributes during instantiation.
+public class Dog extends Animal{
+    public Dog(int legs){
+        super(legs);
+    }
+}
+A subclass's constructor must call its superclass's constructor if the superclass has 
+an explicit constructor to be explicitely initialized.
+
+In order to access attributes  and methods and constructors of superclass, subclass uses 
+the keyword called Super.
+
+
+Subclass can also override the methods of it's superclass.
+Subclass's own implementation 
+public abstract class Animal{
+    protected int numberOfLegs;
+    public void walk(){
+        sout("Animal is walking");
+    }
+}
+public class Dog extends Animal{
+    public void walk(){
+        sout("I'd rather lay on the couch");
+    }
+}
+This type of inheritance is called Implementation Inheritance.
+
+A subclass can only inherit from only one superclass.
+Using subclasses, we can create specialized subclasses.
+A subclass itself can be a superclass to another class.
+

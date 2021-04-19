@@ -1,0 +1,96 @@
+For software, we use Technical Diagrams called UML Diagrams to express their designs.
+
+We have been only using CRC cards for now.
+
+A UML Class Diagram or Class Diagram for short:
+allows us to represent our deisign in more detailed way.
+
+
+Let's have a CRC card for Food.
+
+Food
+Know grocery ID
+know name
+know manufacturer
+know expiry date 
+know price
+check if on sale
+
+
+Class Diagram of Food:
+Class Name: Food 
+-------------------
+Properties Section:
+
+groceryID: String 
+name: String
+manufacturer: String 
+expiryDate: Date 
+price : double 
+------------------
+Operation Section: 
+
+isOnSale(): boolean
+--------------------
+
+Properties: <variable_name> : <variable_type>
+Operations: <name>(<parameter list>) : <return type>
+
+
+If isOnSale takes food parameter, then:
+Operation will look like this
+isOnSale(date: Date) : boolean 
+
+
+CRC card does not show the difference between Properties and operations.
+Class diagrams are very close to implementations.
+
+Class name turns to class in Java.
+Properties in class diagram turn into member variables.
+Operations turn into methods.
+
+public class Food{
+    public String groceryID;
+    public String name;
+    public String manufacturer;
+    public Date expiryDate;
+    public double price;
+
+    public boolean isOnSale(){
+
+    }
+}
+
+
+Converting Code to class diagrams is also straight forward.
+e.g. 
+public class ClickCounter{
+    private int count;
+
+    public ClickCounter(){
+        count = 0;
+    }
+
+    public void click(){
+        count++;
+    }
+
+    public void setClickCount(int clickCount){
+        count = clickCount;
+    }
+
+    public int getClickCount(){
+        return count;
+    }
+}
+
+ClickCounter
+------------
+count : int 
+------------
+click(): void
+setClickCount(clickCount: int): void 
+getClickCount(): int 
+-----------
+
+Class diagrams just have too many details to be a conceptual design.

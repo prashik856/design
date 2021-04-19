@@ -1,0 +1,123 @@
+Decomposition:
+
+
+There are three types of relationships found in decomposition.
+- Association
+- Aggregation
+- Composition
+
+Java Code 
+UML Class Diagram 
+Definition
+
+
+1) Association:
+Association is "some" relationship. This means that there is a loose relationship between two objects.
+These objects may interact with each other for some time.
+
+
+
+Person                  Airline
+-------             -------------
+        0..*     0..*
+        ============
+
+The 0..* concludes that the Airline object is associated with 0 or more Airline Object.
+
+
+Relationship between completely separate entities. 
+If one object is destroyed, the other can continue to exists.
+
+
+e.g. in code:
+public class Student {
+    public void play(Sport sport){
+        ...
+    }
+}
+
+We are just passing Sport object to play. The relationship is completely separate between student and sport.
+
+
+Another example:
+public class Wine{
+    public void pair(Food food){
+        ...
+    }
+}
+
+Loose relationship between two objects.
+
+
+
+2) Aggregation
+Aggregation is a "has-a" relationship where a whole has parts that belong to it. 
+There may be sharing os parts among the wholes in this relationship.
+The "has-a" relationship from a whole to the parts is considered weak.
+What this means is although parts can belong to the wholes, they can also exists independently.
+
+This is like a relationship between airline and it's crew.
+
+E.g. Course selection and students, book shelf and book, pet store and pet.
+
+Code Example:
+public class Airliner {
+    private ArrayList<CrewMember> crew;
+
+    public Ariliner(){
+        crew = new ArrayList<CrewMember>();
+    }
+
+    public void add(CrewMember crewMember){
+        ...
+    }
+}
+
+e.g. 
+public class PetStore{
+    private ArrayList<Pet> pets;
+
+    public PetStore(){
+        pets = new ArrayList<Pet>();
+    }
+
+    public void add(Pet pet){
+        ...
+
+    }
+}
+
+
+
+3) Composition
+Composition is an exclusive containment of parts, otherwise known as a strong has-a relationship.
+What this means is that the whole cannot exists without its parts. If it loses any of its parts 
+the whole ceases to exists. If the whole is destroyed then all of its parts are destroyed too.
+Usually you can only access the parts through its whole. Contained parts are exclusive to the whole.
+
+Relationship between house and a room.
+Human and brain.
+If one object is destroyed, the other is too.
+
+public class Human{
+    private Brain brain;
+
+    public Human(){
+        brain = new Brain();
+    }
+}
+
+The Brain object is created when Human object is created.
+It does not need to be instantiated anywhere else.
+nor does it need to be passed to human object for creation.
+The brain is automatically created with the human.
+
+
+Another example:
+public class Employee{
+    private float salary;
+    public Employee(float salary){
+        this.salary = salary;
+    }
+}
+

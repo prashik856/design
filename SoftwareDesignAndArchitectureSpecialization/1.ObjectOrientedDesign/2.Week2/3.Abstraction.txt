@@ -1,0 +1,66 @@
+ABSTRACTION
+Create models that represents our system 
+
+Abstraction is one of the design principles.
+
+Abstraction is the idea of simplifying a concept in the problem domain to its essential 
+within some context. Abstraction allows you to better understand a concept by breaking it down
+into a simplified description that ignores unimportatn details.
+
+
+E.g. We want to create abstraction for food.
+> Essentials needed for the concept and removes details that are not essential.
+
+An abstraction for a concept should make sense for the concept's purpose.
+
+Rule of Least Astonishment:
+The abstraction captures the essential attributes and behavior for a concept with 
+no surprises and no definitions that fall beyond its scope.
+You don't want to surprise anyone trying to understand your abstraction with irrelevant characteristics.
+
+Concept in Problem Domain: Class
+
+A Class is like a template for instances of a concept.
+An object instantiated from a class then has the essential details to represent an instance of some concept.
+
+Example: We want to create an abstraction for a Person.
+What are essential characteristics? depends on the concept.
+> There can be different abstractions for one concept.
+> E.g. for driving app, we care about a person in the context of a driver.
+Choose abstraction most appropriate for our purpose.
+> When concept is restaurant, we want a different abstraction.
+
+If context is academic setting and we want to create abstraction for a student.
+Some of the essential characteristics of a student
+> The courses they are currently taking
+> Their grades in each course
+> Their student ID number.
+These are basic attributes for a student.
+The values of these attributes may changes but the attributes themselves do not.
+
+
+E.g. attributes of a house cat:
+colour, name, favourite nap location, hunger level and microchip number.
+
+
+In addition to attributes, an abstraction should describe a concept's basic behaviors.
+
+For student, behaviors are:
+Studying, Doing Assignments, Attending Lectures.
+
+
+Relevent behaviors of a Cat:
+napping, grooming, catching mice in the house, eating, and using litter box.
+
+Say our context changes, and we need to model students from a social perspective.
+> Student groups they belong to 
+> Hobbies
+> Sports team they are in
+
+
+
+Now, what about dog abstraction:
+attributes> name, colour, hunger level, breed, size, hair, type of ears
+behaviour> eating, sleeping, and doing tricks.
+
+

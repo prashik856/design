@@ -1,0 +1,32 @@
+DECOMPOSITION.
+
+Decomposition is taking a whole thing and dividing it up into different parts. Or, on the flip side,
+taking a bunch of separate parts with different functionalities and combining them together 
+to form a whole. Decomposition allows you to further break down problems into pieces that are 
+easier to understand and solve.
+
+> Look at the different responsibilities of some whole thing and evaluate how we can separate them 
+into different parts.
+
+
+For a Car: Wheel, engine, gas pidal, seats, doors, windows, etc.
+
+A whole: Finxed or Dynamic number of certain type of part.
+
+> E.g. refrigerator has a fixed number of freezers but different amount of food.
+
+Fixed parts don't change in number overtime.
+
+Parts can also contain parts.
+For a car > Engine contains fuel, etc.
+
+
+Lifetimes of a whole object: e.g. refrigerator and the freezers have the same lifetimes.
+If we dispose of one, the other cannot sustain.
+But food and refrigerator have different lifetimes.
+
+Similarly, car cannot sustain without engine. 
+
+
+Sharing: 
+

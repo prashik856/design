@@ -1,0 +1,37 @@
+ENCAPSULATION:
+In context of a capsule: 
+Some things we can access from the inside, some things we can access from the outside.
+We define some attributes and methods for our abstraction.
+We can them expose certain data and functions of that object, which can be accessed from other objects.
+Restrict access to certain data and function to only within that object.
+
+Encapsulation forms a self-contained object by bundling the data and functions it requires to work,
+exposes an iterface whereby other objects can access and use it, and restricts access to certain inside 
+details
+
+Encapsulation ensures that the characteristics we have defined in an abstraction are bundled 
+together in the same class.
+
+Abstractions can provide Interface for other classes. 
+For e.g. Professor might want to know the courses the student is doing.
+etc 
+
+Encapsulation helps with Data integrity.
+Define some attributes and behaviors of the class that are restricted from the outside to access.
+
+Encapsulation can secure sensitive information.
+
+Encapsulation helps with software changes.
+E.g. Professor asking Student to calculate his gpa and give it to him. 
+this can be done in wany ways:
+> Filling out a form to administration to get all grades 
+> Asking administration to provide them the gpa 
+> Going to student information system to get gpa 
+But here, we can see Professor does not care our Student gets it's gpa. 
+He does not care about the implementation.
+We can apply this notion when we program software.
+
+Black Box Thinking: Don't let other classes know the implementation.
+
+Encapsulation achieves Abstraction Barrier, since the internal working is not relevent to the outside world.
+

@@ -1,0 +1,158 @@
+Generalization with Interfaces in Java and UML.
+
+Type signifies what these objects can do.
+
+We want to introduce subtyping in our subclasses
+
+Class inheritance with the extend keyword is often used for subtyping.
+
+An Interface only declares method signatures, and no constructors, attributes, or methods.
+
+Interface is also used for subtyping.
+Subclass needs to provide all the implementation for what it needs to be it's superclass.
+
+Interfaces are not classes.
+Interfaces are used to describe behaviors.
+
+
+public interface IAnimal{
+    public void move();
+    public void speak();
+    public void eat();
+}
+Never implement or describe how these behaviors are performed.
+We only showed methods!
+
+
+
+We use implements keyword to create classes based on this interface.
+Dog class will implement or describe the behaviors defined in the interface
+public class Dog implements IAnimal{
+    public void move(){
+        ...
+    }
+
+    public void speak(){
+
+    }
+
+    public void eat(){
+
+    }
+}
+We must have all the method signatures explicitly declared and implemented in the class.
+
+A CLASS CAN IMPLEMENT MULTIPLE INTERFACES.
+This is one of the advantages that interfaces have that subclass inheritance does not.
+
+
+
+The interaction between the class implementing the interface is denoted by upward arrow with dotted line.
+^
+|
+|
+|
+Interface touches the head of the arrow and the class touches the tail fo the arrow.
+
+<<interfact>>
+Interface name 
+----------------
+
+the arrow should always point upward.
+This means that the interface will always be at the top and classes will be the bottom.
+
+<<interface>>
+IAnimal 
+--------------
+-------------
++eat()
+--------------
+^
+|
+|
+|
+Dog 
+--------------
+--------------
++eat()
+
+
+
+Advantages of Interfaces:
+Interface is a means by which we can implement polymorphism.
+Polymorphism is when two classes have the same description of a behavior, but the implementation 
+of the behavior may be different.
+
+public interface Animal{
+    public void speak();
+}
+
+public class Dog implements IAnimal{
+    public void speak(){
+        sout("Bark!");
+    }
+}
+
+public class Cat implements IAnimal{
+    public void speak(){
+        sout("Meow!");
+    }
+}
+
+The above is an example of Polymorphism.
+
+Interfaces can inherit from other interfaces.
+
+Interface inheritance should not be abused.
+
+
+E.g.
+public interfact IVehicleMovement{
+    public void moveOnX();
+    public void moveOnY();
+}
+// Can be used to describe for cars or boats.
+
+// What about flying?
+For this we will be needing different interface because on land and water, different things 
+move differently.
+
+public interfce IVehicleMovement3D extends IVehicleMovement{
+    publiv void moveOnZ();
+}
+Now we can use this new interface for planes and submarines
+
+
+
+MULTIPLE INHERITANCE:
+Java doesn't support multiple inheritance.
+This is because inheriting from 2 or more superclasses can cause Data Ambiguity.
+The superclasses may have attributes with the same name or same method signature.
+If they do, how do we distinguish between them?
+
+
+Interfaces do not run into this issue.
+In Java, a class can implement as many interfaces as we want.
+This is because of the nature of the interfaces.
+Since they are only contracts and do not enforce a specific way to complete these contracts,
+overlapping method signatures are not a problem.
+
+A single implementation for multiple interfaces with overlapping contracts is acceptable.
+
+E.g.
+public interface IPublicSpeaking{
+    public void givePresentation();
+    public void speak();
+}
+
+public interface IPrivateConversation(){
+    public void lowerVoiceVolume();
+    public void speak();
+}
+
+public class Persom implements IPublicSpeaking, IPrivateConversation {
+    public void spead(){
+        sout("This is fine");
+    }
+}
+// No Ambiguity because Person class has only one implementation of speak method.

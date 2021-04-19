@@ -1,0 +1,33 @@
+Generalization:
+
+We create methods so that we can reduce the repetition.
+
+Job of Generalization: Reduce the repetition of code.
+
+
+Can we generalize classes?
+Generalization can be done in classes by Inheritance.
+We take Repeated, Coomon and shared characteristics in the classes between two or more classes 
+and factor them out into another class.
+
+We can have a parent class and a child class.
+If child class is inherited from the parent class, the child class will have attributes and behaviors 
+of the parent class.
+We place common attributes and behaviors in our parent class.
+There can be multiple child classes. 
+Child classes can also have attributes and behaviors of them own.
+
+Techically, the parent class is called a super class and the child class is called subclass.
+
+For cat and dog example, since they both are animals, an animal is a general idea.
+Now animal can be used to define set of common characteristics for both cat and dogs.
+
+Our classes should also be named after objects that we are trying to model. 
+This makes our code easier to understand.
+
+Inheritance and methods exemplify the Generalization design principle.
+These are the techniques which help us understand D.R.Y (Don't Repeat Yourself)
+
+Generalization helps us write software that is easier to expand and easier to maintain.
+
+Highly robust software solutions..

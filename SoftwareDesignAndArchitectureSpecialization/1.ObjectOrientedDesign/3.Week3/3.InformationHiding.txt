@@ -1,0 +1,117 @@
+Information Hiding:
+
+Information hdigin allows modules of our system to give others the minimum amount of information 
+needed to use them correctly and hide everything else.
+
+
+implementation details should be hidden.
+
+Assumptions are revealed through interfaces.
+
+
+Encapsulation:
+Information hiding through encapsulation:
+We use encapsulation to bundle attributes and behaviors into their appropriate class, 
+and expose an interface to provide access.
+
+
+Example:
+String a = "Hello";
+String b = a.concat(" World");
+
+Hide information using Access Modifiers.
+
+Access Modifiers:
+Access modifiers change which classes are able to access attributes and behaviors. They also 
+determine which attributes and behaviors a superclass will share with its subclass.
+
+There are four different levels of access in java:
+Public - Other classes can retrieve and modify the attribute.
+Protected 
+Default
+Private 
+
+Public Methods:
+Public methods are also accessible by any class in our system, but this access does not allow 
+other classes to change the implementation of the behavior for the method. 
+A publicly accessible method simple allows other classes to call the method and receive any 
+output from it.
+
+
+Example:
+public class Person {
+    public String name;
+
+    public void sleep(int n){
+        wait(n);
+    }
+}
+
+public static void main(String[] args){
+    Person johnDoe = new Person();
+    johnDoe.name  = "John Doe";
+    johnDoe.sleep(6000);
+}
+
+Notice that we can invoke the behvior but we cannot change how it is implemented because it is 
+hidden from us through encapsulation.
+
+
+Protected Behaviors:
+Protected behaviors and attributes are not accessible to every class in the system.
+They are only available to the encapsulating class itself, all subclasses, and classes 
+within the same package.
+
+Package:
+Packages are the means by which Java organizes related classes into a single namespace.
+
+Example:
+package Populace;
+public class Person{
+    protected String name;
+    public Person(String newName) {
+        this.name = newName;
+    }
+    public String getName(){
+        return this.name;
+    }
+}
+
+package EducationalInstitution;
+import Populace.*;
+public class University {
+    private String name = "Coursera";
+    private List<Person> students = new ArrayList<Person>();
+
+    public static void main(String[] args){
+        University uni = new University();
+        Person student = new Person("John Doe");
+        
+        student.name = "John Kennedy";
+        // This line of code does not work.
+        // It is protected and in a different package.
+
+        uni.students.add(student);
+    }
+}
+
+
+
+Default Access Modifier:
+The default access Modifier will only allow access to attributes and methods 
+to subclasses or classes that are part of the same package or encapsulation.
+This access modifier is also called the no modifier access because we do not need to explicitly 
+declare it.
+
+e.g. public class Person{
+    String name; // Here default access level will be applied.
+}
+
+
+
+Private Access Modifier:
+Private attributes and methods are not accessible by any class other than by the encapsulating class 
+itself.
+This means these attributes cannot be accessed directly and these methods cannot be invoked by any 
+other classes.
+

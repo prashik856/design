@@ -1,0 +1,47 @@
+UML Sequence Diagram:
+
+Sequence Diagrams:
+A Sequence Diagram describes how objects in our system interact to complete a specific task.
+
+Name of class in a box.
+: Person 
+
+Vertical dotted line to represent life line (as the time passes by)
+|
+|
+|
+|
+
+
+Use -> (arrows to show messages that are sent from one object to another)
+
+
+Sequence diagram can have multiple sequence diagram inside them.
+E.g. For ATM process, we have a big ATM box to describe the whole process, and then we 
+have separate diagrams for Withdrawal and Deposit.
+
+
+Change TV Channel
+If there are people in our diagram, we use stick figures (actors.). No need to draw a box around them.
+Here only two classes are there(Remote and Television.)
+To send data, we use bold arrow. 
+To return data, we use dotted arrow.
+: TV Viever                     : Remote                        : Television
+|
+|
+|   -> Press Numbers(number)        
+|                               -> Change Channel(number)
+|
+|
+|                          Show change of channel.
+|                       <--------------------------------------------------
+|
+|
+|                               
+|
+|
+
+When an object it activated, it is denoted by a small vertical rectangle.
+
+(Man too complecated. Look up images)
+

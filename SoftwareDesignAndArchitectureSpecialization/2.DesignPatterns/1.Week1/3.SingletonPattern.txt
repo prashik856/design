@@ -1,0 +1,60 @@
+Creational Pattern.
+
+Having only one.
+
+Having only one object of a class.
+
+E.g. Preference class in a Game. It should only have one instance.
+
+The Singleton Pattern:
+Enforces one and only one object of a Singleton class.
+Has the Singleton object globally accessible.
+
+
+How is it actually implemented?
+
+
+E.g. 
+Having Public Constructor is not a solution. We need to have private constructor.
+public class NotSingleton {
+    public NotSingleton() {
+        ...
+    }
+}
+
+e.g.:
+We need Private Constructor.
+This creates an apparent contradiction.
+public class ExampleSingleton {
+    // lazy construction
+    // The class variable is null if no instance is instantiated
+    private static ExampleSingleton uniqueInstance = null;
+
+    private ExampleSingleton() {
+        ...
+    }
+
+    // lazy construction of the instance 
+    public static ExampleSingleton getInstance() {
+        if(uniqueInstance == null){
+            uniqueInstance = new ExampleSingleton();
+        }
+
+        return uniqueInstance;
+    }
+
+    ...
+}
+
+
+Cannot be called outside it's class. 
+For this, we need to declare a class variable (uniqueInstance).
+We need this variable private. 
+A public instance to create this class only if it is null. 
+Else, return the already created uniqueInstance.
+
+
+Lazy Creation: Object is not create unless it is actually needed.
+helpful when object is large.
+
+

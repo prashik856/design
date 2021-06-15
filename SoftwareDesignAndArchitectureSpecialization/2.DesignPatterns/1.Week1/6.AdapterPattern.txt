@@ -1,0 +1,99 @@
+ADAPTER PATTERN:
+
+Adapter to connect different types of chargers (C type to micro usb, etc)
+
+Compatibility Issus.
+
+The output of one system may not conform to the expected input of another system.
+
+
+Client Class:
+
+Adapter Class sits between Client class and Adaptee class. It will implement the target
+interface 
+
+Adaptee class that the client class wants to use (3rd party.)
+
+
+Example of a Webservice:
+
+Step 1: Design the target Interface:
+public interface WebRequester {
+    public int request(Object);
+}
+
+
+Step 2: Implement the target interface with the adapter class 
+public class WebAdapter implements WebRequester {
+    private WebService service;
+
+    public void connect(WebService currentService) {
+        this.service = currentService;
+    }
+
+    public int request(Object request) {
+        Json result = this.toJson(request);
+        Json response = service.request(result);
+        if(response != null){
+            return 200;
+        }
+        return 500;
+    }
+
+    private Json toJson(Object input) {...}
+}
+
+
+Step 3: Send the request from the client to the adapter using the target interface.
+public class WebClient {
+    private WebRequester webRequester;
+
+    public WebClient(WebRequester webRequester) {
+        this.webRequester = webRequester;
+    }
+
+    private Object makeObject() {...} / make an Object 
+
+    public void doWork() {
+        Object object = makeObject();
+        int status = webRequester.request(Object);
+        if (status == 200) {
+            System.out.println("OK");
+        } else {
+            System.out.println("Not Ok");
+        }
+        return;
+    }
+}
+
+
+Step 4: Main 
+public class Program {
+    public static void main(String args[]) {
+        String webHost = "Host: htts://google.com\n\r";
+        WebService service = new WebService(webHost);
+        WebAdapter adapter = new WebAdapter();
+        adapter.connect(service);
+        WebClient client = new WebClient(adapter);
+        client.doWork();
+    }
+}
+
+
+The adaptee is hidden from the client by wrapping adapter class.
+
+So, if two interfaces are incompatible, why don't we just change one, or even both, so that 
+they are able to talk to each other? -> Can't do that. it's third party.
+
+Why don't we just change our system's interface?
+-> Might work. But subsystem might be using it.
+
+
+
+Remember that an adapter is meant to :
+- Wrap the adaptee and expose a target interface to the client.
+- indirectly change the adaptee's interface into one that the client is expecting by implementing 
+a target interface.
+- Indirectly translate the client's request into one that the adaptee is expecting.
+- Reuse an existing adaptee with an incompatible interface.
+

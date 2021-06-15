@@ -1,0 +1,17 @@
+MODEL CHECKING
+
+How do we make sure that the system we created is correct?
+
+Our Model should never enter a Deadlock state:
+A deadlock is a situation where our system cannot continue because two tasks are waiting for 
+the same resource.
+
+State Model:
+A state model is an abstract state machine that can be in one of various states. The model 
+checker then checks that the state model confirms to certain behavioral properties.
+
+
+The three different phases to performing model checking:
+The Modeling phase 
+The running phase 
+The Analysis phase 

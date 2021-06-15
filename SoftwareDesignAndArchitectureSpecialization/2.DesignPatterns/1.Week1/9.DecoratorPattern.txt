@@ -1,0 +1,130 @@
+DECORATOR PATTERN:
+
+Plane simple coffee or more Dressed up Coffee (Adding more ingredients).
+
+It will serve the same puspose even when we add a lot of other stuffs in it.
+
+Decorator design Pattern:
+It uses Aggregation.
+
+Aggregation:
+has a relationship between objects.
+
+Aggregation Stack (Regerences):
+Augment the behaviours of the superclass.
+Augment behaviours are always 1 to 1 in Decorator design pattern.
+
+It uses both Interfaces and Inheritance.
+Component Interface.
+ConcreteComponent class implements Component Interface.
+
+
+Decorator Aggregates other types of components, which will allow us to stack 
+components on top of each other.
+
+Decorator serves as the abstract superclass of concrete decorator classes 
+that will each provide an increment of behaviour.
+
+
+Another anology that can be used is Making of a Pizza.
+
+
+More realistic example is a web page. This is where we will use this design pattern.
+
+Component Interface is WebPage.
+ConcreteComponent is BasicWebPage.
+We need decorators to add more functionality to our basic webpage.
+
+
+Implementation:
+Step 1: Design the component interface:
+public interface WebPage {
+    public void display();
+}
+
+
+Step 2: Implement the interface with your base concrete component class.
+public class BasicWebPage implements WebPage{
+    private String html = ...;
+    private String styleSheet = ...;
+    private String scripts = ...;
+    public void display () {
+        /* Renders the HTML to the stylesheet and run any embedded scripts */
+        System.out.println("Basic Web Page");
+    }
+}
+
+Step 3: Implement the interface with your abstract decorator class 
+public abstract class WebPageDecorator implements WebPage {
+    protected WebPage page;
+
+    public WebPageDecorator (WebPage webpage) {
+        this.page = webpage;
+    }
+
+    public void display() {
+        this.page.display();
+    }
+}
+
+
+Step 4: Inherit from the abstract decorator and implement the component 
+interface with concrete decorator class.
+public class AuthorizdWebpage extends WebPageDecorator {
+    public AuthorizedWebPage(WebPage decoratedPage) {
+        super(decoratedPage);
+    }
+
+    public void authorizedUser(){
+        System.out.println("Authorizing user");
+    }
+
+    public display(){
+        super.display();
+        this.authorizedUser();
+    }
+}
+
+
+public class AuthenticatedWebPage extends WebPageDecorator {
+    public AuthenticatedWebPage(WebPage decoratedPage) {
+        super(decoratedPage);
+    }
+
+    public void authenticateUser(){
+        System.out.println("Authenticating user");
+    }
+
+    public display(){
+        super.display();
+        this.authenticateUser();
+    }
+}
+
+
+The call to super.display will cause the next web page in the stack to execute its version 
+of display until you get to the basic web page.
+
+
+Main Class: 
+public class Program {
+    public static void main(String args[]) {
+        WebPage myPage = new BasicWebPage();
+        myPage = new AuthorizedWebPage(myPage);
+        myPage = new AuthenticatedWebPage(myPage);
+        myPage.display();
+    }
+}
+
+
+
+Key Concepts are:
+- We can add, in effect, any number of behavior dynamically to an object at runtime by using aggregation
+as a substitute for pure inheritance.
+- Polymorphism is achieved by implementing a single interface.
+- Aggregation lets us create a stack of objects.
+- Each decorator object in the stack is aggregated in a one-to-one relationship with 
+the object below it in the stack.
+- By combining aggregation and polymorphism, we can recursively invoke the same behavior 
+down the stack and have the behavior execute upwards from the concrete component object.
+

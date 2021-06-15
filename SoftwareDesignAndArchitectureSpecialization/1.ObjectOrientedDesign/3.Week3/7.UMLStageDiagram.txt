@@ -1,0 +1,47 @@
+UML State Diagram:
+A State Diagram is a technique that we can use to describe how our system behaves and responds.
+
+
+State Diagrams:
+State Diagrams can describe a single object and illustrate how that object behaves in response 
+to a series of events in our system.
+
+State:
+A state is the way an object exists at a particular point in time. The state of an object 
+is determined by the values of its attributes.
+
+Start state. (Idle)
+
+State has these attributes : State name, state variables, state activities.
+
+Activities: entry/exit/do.
+
+Entry Activities:
+Entry activities are actions that occur when the state is just entered form another state.
+
+Exit Activities: 
+Exit activities are actions that occur when the state is exited and moves on to another state.
+
+Do Activities:
+Do activities are actions that occur once, or multiple times while the object is in a certain state.
+
+E.g. for a clock
+entry / unlock spring 
+do / ring bell 
+exit / lock spring 
+
+
+Transition:
+denoted by arrow from a given state to next state.
+event[condition] / action 
+
+E.g while submitting a test. 
+Click submit button
+[submission date before due date] / Submit Test 
+------------------------------------------------>
+
+
+Termination.
+State diagrams are useful for describing the behavior of a system or of a single object.
+
+State diagrams can also help us find issues in our system.

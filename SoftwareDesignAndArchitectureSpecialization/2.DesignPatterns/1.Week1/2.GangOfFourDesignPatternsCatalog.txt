@@ -1,0 +1,10 @@
+Gang of Four Design Patterns Catalog
+
+Pattern language.
+
+Creational patterns.
+
+
+Structural Patterns: How objects are connected to each other.
+
+Behavioral Patterns: How each object work towards a common goal.

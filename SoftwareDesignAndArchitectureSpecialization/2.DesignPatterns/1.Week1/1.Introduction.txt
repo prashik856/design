@@ -1,0 +1,11 @@
+What is a design pattern?
+
+23 Design Patterns in book
+Design Patterns : Elements of Reusable Object Oriented Software.
+
+
+Why should we use design patterns?
+
+
+Develop Design Vocabulary.
+

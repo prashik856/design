@@ -1,0 +1,104 @@
+INHERITANCE ISSUES:
+
+Design Principles:
+Abstraction, Encapsulation, Decomposition and Generalization.
+
+Abstraction: attributes and behaviors.
+Encapsulation: access to these attributes.
+Decomposition: class be classified into smaller parts.
+Generalization: Common things across classes.
+
+Misusing inheritance can lead to poor code.
+
+Ask yourself: Am I using inheritance to simple share attributes or behavior 
+without further adding aything special in my subclass.
+If yes > then misuse.
+
+
+E.g. 
+public class Pizza{
+    private List toppings;
+    private String size;
+    private String crustStyle;
+
+    public Pizza(String size, String crust) {
+        this.toppings = new ArrayList();
+        this.size = size;
+        this.crustStyle = crust;
+    }
+
+    public void addTopping(String topping) {
+        this.toppings.add(topping);
+    }
+
+    public void buldAddTopping(ArrayList toppingList) {
+        this.toppings.addAll(toppingList);
+    }
+
+    public void cook() throws InterruptedException {
+        wait(10 * 1000);
+    }
+}
+
+// Misuse of inheritance
+public class Pepperoni extends Pizza {
+    public Pepperoni(String size, String crust) {
+        super(size, crust);
+        super.addTopping("pepperoni");
+    }
+}
+
+
+
+Second rule:
+Liskov Substitution Principle:
+This principle states that a subclass can replace a superclass, if and only if, the subclass 
+does not change the functionality of the superclass.
+
+
+Example 2:
+public class Animal{
+    private int numberOfLegs;
+    private boolean hasTail;
+    // Other characteristics of an animal can be included here
+
+    public Animal(int legs, boolean tail) {
+        this.numberOfLegs = legs;
+        this.hasTail = tail;
+    }
+
+    public void walk() {...}
+    public void run() {...}
+    public void eat() {...}
+    // Other behaviors of an animal can be included here.
+}
+
+
+What if we had whale?
+// A whale does not know how to run and walk
+public class extends Animal {
+    public Whale() {
+        super(0, True);
+    }
+
+    private void swim() {...}
+    public void run() {
+        this.swim();
+    }
+
+    public void walk(){
+        this.swim();
+    }
+}
+The principle is voilated here.
+
+
+
+Bad Inheritance can also be seen here:
+Java Collections Library.
+in Stack class.
+
+
+If Inheritance does not fulfill our needs, we need to consider Decomposition.
+
+

@@ -1,0 +1,163 @@
+Separation of Concerns.
+
+Concern:
+A concern is a very general notion, basically it is anything that matters in providing a 
+solution to a problem.
+
+Separate departments to handle different tasks. 
+
+We need Separation of Concerns.
+
+
+Concerns:
+How these abstractions are implemented in the software can lead more concerns.
+Some of these concerns may involve:
+-> What information the implementation represents.
+-> What it manipulates
+-> What gets presented at the end.
+
+Separation of concern is an ongoing process throughout the design process.
+
+
+
+Example Dog eating food:
+is the food provided by Dog owner? We need to separate the two concerns.
+The dog eating food and food provided.
+
+DogOwner
+---------
+-myDog : Dog 
+-dogFood: Food 
+-----------
++feedMyDog() : String 
++buyDogFood(Food): String
+
+<>                                              <>
+|                                               |
+Dog                                          Food 
+--------                                     ---------------
+-name: String                                 -name: String 
+-food: Food 
+----------------
++eatFood(Food): String 
+
+
+We have removed the concern of how to get food and feeding it to the dog, and let Dog Owner 
+handle those issues.
+
+
+
+Another Example:
+SmartPhone
+
+public class SmartPhone{
+    private byte camera;
+    private byte phone;
+
+    public SmartPhone() {...}
+
+    public void takePhoto() {...}
+    public void savePhoto() {...}
+    public void cameraFlash() {...}
+
+    public void makePhoneCall() {...}
+    public void encryptOutgoingSound() {...}
+    public void decipherIncomingSound() {...}
+
+}
+We have low cohesion in SmartPhone class.
+
+
+What changes can we do to make our SmartPhone more Cohesive..
+We can create two separate classes for Camera and Phone.
+We can replace the attributes with the instances of Camera and Phone.
+
+
+Our SmartPhone class has two Concers:
+-> Act as a traditional Phone 
+-> Be able to use the built-in camera to take pictures.
+
+
+After applying separation of concerns:
+
+
+SmartPhone 
+-myCamera : Camera 
+-myPhone : Phone 
+
+<<>> Tightly bounded to IPhone and ICamera Interfaces 
+
+<<interface>>
+IPhone
++makePhoneCall(): void 
++encryptOutgoingSound(): void 
++decipherIncomingSound(): void 
+
+^
+|
+TraditionalPhone 
+
+
+
+<<interface>>
+ICamera 
++takePhoto(): void 
++savePhoto(): void 
++cameraFlash(): void 
+
+^
+|
+FirstGenCamera
+
+
+public interface ICamera{
+    public void takePhoto();
+    public void savePhoto();
+    public void cameraFlash();
+}
+
+public interface IPhone{
+    public void makePhoneCall();
+    public void encryptOutgoingSound();
+    public void decipherIncomingSound();
+}
+
+public class FirstGenCamera implements ICamera{
+    ...
+}
+
+public class TraditionalPhone implements IPhone{
+    ...
+}
+
+Our SmartPhone class looks like this:
+public class SmartPhone{
+    private ICamera myCamera;
+    private IPhone myPhone;
+
+    public SmartPhone(ICamera aCamera, IPhone aPhone){
+        this.myCamera = aCamera;
+        this.myPhone = aPhone;
+    }
+
+    public void useCamera(){
+        return this.myCamera.takePhoto();
+    }
+
+    public void usePhone(){
+        return this.myPhone.makePhoneCall();
+    }
+}
+We can have a SmartPhone Constructor with Camera and Phone 
+
+We just let the responsibilities of creating instances of Camera and phone to someone else.
+The SmartPhone does actually need to know.
+
+Our SmartPhone class is now more Cohesive. 
+The tradeOff is increased coupling in our System.
+Since SmartPhone class needs to import both Camera and Phone interfaces now.
+
+Separation of concerns create more Cohesive classes using Abstraction, Encapsulation, Decomposition, 
+and Generalization.
+
+Modularity is increased as Developers can easily reuse the code to develop other classes.

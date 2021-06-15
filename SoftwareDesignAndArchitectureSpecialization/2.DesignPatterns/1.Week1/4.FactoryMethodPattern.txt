@@ -1,0 +1,206 @@
+Factory Method Pattern 
+
+Factory Object?
+
+Object creation happens in Factory.
+
+E.g. Creation of a knife
+Knife orderKnife(String knifetype) {
+    Knife knife;
+
+    // create Knife object - concrete instantiation
+    // Which type of subclass instance do we need.
+    // We do concrete instantiation with the "new" object.
+    if(knifetype.equals("steak")) {
+        knife = new SteakKnife();
+    } else if(knifeType.equals("chefs")) {
+        knife = new ChefsKnife();
+    } else if(knifeType.equals("bread")) {
+        knife = new BreadKnife();
+    } else if(knifeType.equals("paring")) {
+        knife = new ParingKnife();
+    }
+
+    // prepare the Knife
+    // Common to all knifes.
+    knife.sharpen();
+    knife.polish();
+    knife.package();
+    
+    return knife;
+}
+
+What if we add more knife types.
+if/else will keep on growing
+
+Instead of creating it in the store, we create it in our Factory Object (Create Product (instance)).
+Sharpening, Polishing and Packaging will stay in our Order Knife Class (store), 
+but responsibility of creating the Product will be deligated to another object (KnifeFactory Class).
+
+public class KnifeFactory {
+    public Knife createKnife(String knifeType) {
+        Knife knife = null;
+
+        // create Knife Object 
+        if (knifeType.equals("steak")) {
+            knife = new SteakKnife();
+        } else if (knifeType.equals("chefs")) {
+            knife = new ChefsKnife();
+        }
+
+        return knife;
+    }
+}
+
+
+Factory object is where we create an instance of a class.
+Now, our KnifeStore class is a client of our KnifeFactory class.
+
+
+Like this:
+public class KnifeStore {
+    private KnifeFactory factory;
+
+    // requires a KnifeFactory object to be passed to this constructor.
+    public KnifeStore(KnifeFactory factory) {
+        this.factory = factory;
+    }
+
+    public Knife orderKnife(String knifeType) {
+        Knife knife;
+
+        // use the create method in the factory 
+        knife = factory.createKnife(knifeType);
+
+        // prepare the Knife 
+        knife.sharpen();
+        knife.polish();
+        knife.package();
+
+        return knife;
+    }
+}
+
+What have we gained?
+Other stores (classes) may now use this Knife Factory object to create knife object.
+
+Benefits of Factory Objects:
+If there are multiple clients that want to instantiate the same set of classes,
+then by using a Factory object, we have cut our redundant code and made 
+the software easier to modify.
+
+Now, we can just change the code of our Factory to add new kinds of knifes.
+We don't need to change any client side code.
+
+Coding to an interface, not an implementation.
+
+Stores don't care what kind of knife the factory is making as long as it receives a knife.
+
+
+Factory Method Pattern:
+Factory Object to create an object.
+Factory method uses a method in the same factory class to create an object.
+The Factory method design intent is to define an interface for creating objects, but 
+let the subclasses decide which class to instantiate.
+
+
+E.g. Looking at KnifeStore class:
+abstract class: Cannot instantiate this class.
+public abstract class KnifeStore {
+    public Knife orderKnife(String knifeType) {
+        Knife knife;
+
+        // now creating knife is a method in the class.
+        knife = createKnife(knifetype);
+
+        // This is still the same as before!
+        knife.sharpen();
+        knife.polish();
+        knife.package();
+
+        return knife;
+    }
+
+    abstract Knife createKnife(String knifeType);
+}
+
+
+To create one instance, we need to have subclasses, like QualityKnifeStore or BudgetKnifeStore.
+The method createKnife is abstract and empty because we want the Factory method 
+to be defined by the subclasses.
+
+Whenever a KnifeStore classes is defined, they need to define this createKnife method.
+
+e.g.
+public class BudgetKnifeStore extends KnifeStore {
+    // up to any subclass of KnifeStore to define this method. 
+    Knife createKnife(String knifeType) {
+        if(knifeType.equals("steak")) {
+            return new BudgetSteakKnife();
+        } else if (knifeType.equals("chefs")) {
+            return new BudgetChefsKnife();
+        }
+        // more types 
+        else return null;
+    }
+}
+
+
+
+UML diagram:
+Abstract class:
+KnifeStore 
+orderKnife()
+createKnife()
+
+^
+|
+|
+
+Store Class, a subclass of Knife Store 
+BudgetKnifeStore 
+createKnife()
+
+|
+|
+V 
+
+BudgetChefsKnife 
+
+|
+|
+V 
+
+Abstract class Knife 
+
+
+This is the heart of Factory Method Pattern. 
+
+
+Factory Method UML 
+
+Abstract Class Creator 
+someOperation()
+factoryMethod()
+
+^
+|
+|
+
+Concrete Creator 
+factoryMethod()
+
+|
+|
+V 
+
+Concrete Product
+
+|
+|
+V 
+ 
+Abstract class Product 
+
+
+

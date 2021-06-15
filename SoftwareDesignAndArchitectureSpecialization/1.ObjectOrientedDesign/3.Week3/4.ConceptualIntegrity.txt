@@ -1,0 +1,22 @@
+CONCEPTUAL INTEGRITY:
+
+Use certain agile meeting practices.
+
+Daily Stand-up meetings
+Sprint Retrospectives.
+
+
+E.g. when creating methods to calculate gpa, return degree and courses, methods will look
+like this.
+calculateStudentGPA()
+getStudentCourses()
+getStudentDegree()
+
+
+
+Code Reviews:
+Conceptual Integrity:
+It is better to have a system omit certain anomalous features and improvements, but to reflect one 
+set of design ideas, than to have one that conatains many good but independent
+and uncoordinated ides.
+

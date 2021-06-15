@@ -1,0 +1,129 @@
+COUPLING AND COHESION
+
+The average person can only hold seven things in short term memory.
+Module : class, attributes and methods 
+
+Metrics to evaluate design complexity are coupling and cohesion.
+
+Coupling: captures the complexity of connecting the module to other modules.
+If highly reliant on ther modules, we can it is Tightly Coupled.
+Like puzzle pieces
+
+If easily connected to other modules, it is loosely coupled.
+Lego pieces
+
+We want our module to be connected either loose or low.
+
+For evaluating Coupling for a module, we need to consider Degree, Ease and Flexibility.
+
+
+Degree:
+Degree is the number of connections between the module and others.
+With coupling, we want to keep the degree small. For instance, if the module needed to connect to other 
+modules through a few parameters or narrow interfaces, then the degree would be small, and coupling 
+would be loose.
+
+
+Ease:
+Ease is how obvious are the connections between the module and others. With coupling, we want 
+the connections to be easy to make without needing to understand the implementations of other modules.
+
+
+Flexibility:
+Flexibility is how interchangeable the other modules are for this module. With coupling, we want 
+the other modules easily replaceable for something better in the future.
+Like lego.
+
+
+
+Complexity within the Module: Cohesion 
+
+Cohesion:
+Cohesion represents the clarity of the responsibilities of a module.
+
+If our Module only does one task, then it is Highly Cohesion.
+If our Module tries to encapsulate more than one purpose, or has an unclear purpose, it has 
+low Cohesion.
+
+We want Chi Cohesion. 
+
+
+More Detailed Example of Coupling and Cohesion. 
+
+Sensor
+--------
+--------
++get(controlFlag: int)
+
+
+public void get(int controlFlag){
+    switch(controlFlag){
+        case 0:
+            return this.humidity;
+            break;
+        case 1:
+            return this.temperature;
+            break;
+        default:
+            throw new UnknownControlFlagException();
+    }
+}
+
+We need to evaluate this class based on Coupling and Cohesion.
+
+Sensor class is low cohesion, since it is trying to do two different things (return two values, 
+either humidity or temperature)
+It doesn't have clear single purpose.
+
+Sensor class has tight coupling, since it's get method is not straightforward.
+The user of get method will have to open up Sensor to see how it works.
+That's not loose coupling.
+
+
+Since it is unclear what controlFlag means in the get method, we would have to read 
+inside the method itself to see what is actually happening. Thus it has tight coupling.
+
+
+We now replace it with something like this:
+
+<<interface>>
+ISensor
++get()
+^
+|
+|
+|(dotted line)
+
+HumiditySensor              TemperatureSensor
++get()                      +get()
+
+Now, each class has a clearly defined purpose. So it is highly Cohesive.
+Now, get method is not hiding any information. We don't need to break encapsulation to see 
+inside the get method. So it is low coupling. 
+
+
+
+Evaluate the complexity of the following code:
+public class Globals{
+    public static double Pressure = 0.0;
+}
+
+public class LawnSprinkler{
+    public void sprinkle(){
+        this->_pressure = Globals.Pressure;
+        this->turnOnWaterPump(this->_pressure);
+    }
+
+    private void turnOnWaterPump(double pressure){
+        // implementations
+    }
+
+    // .. Other parts of the class.
+}
+
+since LawnSprinkler just has one purpose, to sprinkle, it is highly Cohesive.
+But despite having no parameters, it is using globals. Therefore it is tightly coupled.
+
+
+We always need Low coupling (simplistic methods) and High Cohesion (one single purpose)
+

@@ -1,0 +1,25 @@
+CHAIN OF RESPONSIBILITY PATTERN:
+
+Design Patterns
+
+A Chain of Objects that are responsible for handling requests
+
+Chain of Handler objects that are linked together.
+
+Example:
+We have a screw and a top of tools, but we don't know which will work.
+What do we do? We try each tool on the screw and see which one works.
+
+Similar to Exception handling in Java.
+
+
+Where to use this?
+In email service
+An email come, we have a series of Filter objects which will filter the incoming mail.
+
+Each filter should go through the following steps:
+- Check if rule matches
+- If it matches, do something specific
+- If it doesn't match, call the next filter in the list.
+To achieve this, we can use the Template pattern[Each filter should follow those particular steps]
+

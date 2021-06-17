@@ -1,0 +1,80 @@
+TEMPLATE METHOD PATTERN
+
+Behavioral Design Patterns : Individual Objects works towards a common goal.
+
+Different dishes have many different tastes but a similar cooking pattern
+
+Drive To Destination : Self Driven Vehicle Template Method
+
+
+Code for Pasta Dish SuperClass:
+public abstract class PastaDish {
+
+	// This method cannot be overwritten by the subclasses
+	public final void makeRecipe() {
+		boilWater();
+		addPasta();
+		cookPasta();
+		drainAndPlate();
+		addSauce();
+		addProtein();
+		addGarnish();
+	}
+
+	// Subclasses will implement these
+	protected abstract void addPasta();
+	protected abstract void addSauce();
+	protected abstract void addProtein();
+	protected abstract void addGarnish();
+
+	// This method is same for all the subclasses
+	private void boilWater(){
+		System.out.println("Boiling Water");
+	}
+	...
+}
+
+
+public class SpaghettiMeatballs extends PastaDish {
+	protected void addPasta(){
+		System.out.println("Add Spaghetti");
+	}
+
+	protected void addProtein() {
+		System.out.println("Add meatballs");
+	}
+
+	protected void addSauce() {
+		System.out.println("Add tomato Sauce");
+	}
+
+	protected void addGarnish() {
+		System.out.println("Add Parmesan Cheese");
+	}
+}
+
+
+public class PenneAlfredo extends PastaDish {
+	protected void addPasta(){
+		System.out.println("Add penne");
+	}
+
+	protected void addProtein() {
+		System.out.println("Add chicken");
+	}
+
+	protected void addSauce() {
+		System.out.println("Add Alfredo Sauce");
+	}
+
+	protected void addGarnish() {
+		System.out.println("Add Parsley");
+	}
+}
+
+
+Template Method:
+Two Classes with very similar functionality
+Very similar order of operations
+Uses Generalization and Inheritence
+

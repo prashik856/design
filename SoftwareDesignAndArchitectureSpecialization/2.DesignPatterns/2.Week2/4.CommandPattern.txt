@@ -1,0 +1,53 @@
+COMMAND PATTERN:
+
+Sender -> Command -> Receiver
+
+Sender doesn't need to know what methods to call to the Receiver.
+
+Boss gives memos (commands) to Secretary. The Secretary is then responsible for giving the memos to the person responsible.
+
+Invoker(Secretary) - Invokes the Command object to do stuff
+Command Manger - keeps track of commands
+
+
+Where can we implement the command pattern in our software?
+One purpose of using the command pattern is to store and schedule different requests.
+
+> Store command objects into lists
+> Manipulate them before they are completed
+> Put them into a queue
+
+For Creating Text Editing Software.
+For any type of Application using undo/redo
+
+
+Looking inot details:
+public class PasteCommand extends Command {
+	private Document document; // a receiver
+	private int position;
+	private String text;
+	...
+	public PasteCommand(Document document, int position, String text) {
+		this.document = document;
+		this.position = position;
+		this.text = text;
+	}
+
+	public void execute() {
+		document.insertText(position, text);
+	}
+
+	public void unexecute() {
+		document.deleteText(position, text.length());
+	}
+
+	public boolen isReversible() {
+		return true;
+	}
+}
+
+
+Source Code of Invoker:
+CommandManager commandManager = CommandManager.getInstance();
+Command command = new PasteCommand(aDocument, aPosition, aText);
+commandManager.invokeCommand(command);

@@ -1,0 +1,162 @@
+STATE PATTERN
+
+When should we use the state pattern?
+Change the behaviour of the object based on the state it is in at runtime.
+
+
+E.g. A Vending Machine
+Simple Vending machine will have these three states
+1. Idle
+2. Has one Dollar
+3. Out of Stock
+
+The Events to trigger state change will be:
+1. Insert Dollar
+2. Eject Money
+3. Dispense
+
+Action the Vending Machine can do
+1. doReturnMoney
+2. doReleaseProduct
+
+
+Vending Machine class in code:
+public class VendingMachine {
+	public VendingMachine(int count){
+	...
+	}
+
+	//handle user events
+	public void insertDollar(){
+		...
+	}
+
+	public void ejectMoney() {
+		...
+	}
+
+	public void dispense(){
+	...
+	}
+
+	...
+}
+
+
+
+States in Java:
+final class State {
+	// Singleton objects for states
+	private State() {}
+
+	// all potential vending machine states as singletons
+	public final static State Idle = new State();
+	public final static Static HasOneDollar = new State();
+	public final static State OutOfStock = new State();
+}
+
+Vending Machine class in action:
+public class VendingMachine {
+	private State currentState;
+	private int count;
+
+	public VendingMachine(int count) {
+		if(count > 0) {
+			currentState = State.Idle;
+			this.count = count;
+		} else {
+			currentState = State.OutOfStock;
+			this.count = 0;
+		}
+	}
+
+	// handle insert dollar trigger
+	public void insertDollar() {
+		if(currentState == State.Idle) {
+			currentState = State.HasOneDollar;
+		} else if(currentState == State.HasOneDollar) {
+			doReturnMoney();
+			currentState = State.Idle;
+		} else if(currentState == State.OutOfStock) {
+			doReturnMoney();
+		}
+	}
+
+}
+
+
+State Interface:
+public interface State {
+	public void insertDollar(VendingMachine vendingMachine);
+	public void ejectMoney(VendingMachine vendingMachine);
+	public void dispense(VendingMachine vendingMachine);
+}
+
+public class IdleState implements State {
+	public void insertDollar(VendingMachine vendingMachine) {
+		System.out.println("dollar inserted");
+
+		vendingMachine.setState(vendingMachine.getHasOneDollarState);
+	}
+
+	public void ejectMoney(VendingMachine vendingMachine){
+		System.out.println("No Money to return");
+	}
+
+	public void dispense(VendingMachine vendingMachine) {
+		System.out.println("Payment Required");
+	}
+}
+
+
+public class HasOneDollarState implements State {
+	...
+
+	public void dispense(VendingMachine vendingMachine) {
+		System.out.println("releasing product");
+
+		if(vendingMachine.getCount() > 1) {
+			vendingMachine.doReleaseProduct();
+			vendingMachine.setState(vendingMachine.getIdleState());
+		} else {
+			vendingMachine.doReleaseProduct();
+			vendingMachine.setState(vendingMachine.getOutOfStockState());
+		}
+	}
+}
+
+public class VendingMachine{
+	private State idleState;
+	private State hasOneDollarState;
+	private State outOfStockState;
+
+	private State currentState;
+	private int count;
+
+	public VendingMachine(int count) {
+		// make the needed states
+		idleState = new IdleState();
+		hasOneDollarState = new HasOneDollarState();
+		outOfStockState = new OutOfStockState();
+
+		if(count > 0) {
+			currentState = idleState;
+			this.count = count;
+		} else {
+			currentState = outOfStockState;
+			this.count = 0;
+		}
+	}
+
+	public void insertDollar() {
+		currentState.insertDollar(this);
+	}
+
+	public void ejectMoney() {
+		currentState.ejectMoney(this);
+	}
+
+	public void dispense() {
+		currentState.dispense(this);
+	}
+}

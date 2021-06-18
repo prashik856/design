@@ -1,0 +1,42 @@
+MVC PATTERN:
+
+So far, we have learned Creational, Structural And Behavioral pattern.
+
+Here we will learn about Model View Controller (MVC) Design Pattern.
+
+
+Antipattern or code Smells (bad code)
+
+System of entering and Displaying orders (for a cashier)
+i.e. User Interface
+
+Whenever we hear of User Interface, we should always think of using MVC Pattern.
+
+Model (Backend) - Contains the underlying data and logic that users want to see and manipulate [put together grocery orders]
+View (Front end) - the view gives a user a way to se the model or at least parts of it.
+
+Observer Design Pattern : An View is an Observer. The View is subscribed to the Model. The Model need to notify the View for any changes in prices (or any other changes).
+
+View also contains the logic to change the order for cashier (Change price, delete items,etc).
+
+This information is passed to Controller (Receives events, and coordinates actions. To process this data).
+
+Thus, we have Separation of Concerns.
+
+Model - Intity Object (internal)
+View - Boundary Object 
+Controller - Control Object
+
+Example for cashier: Let us use Delete Item and Change Price options
+
+Implementation? (See java Codes)
+
+There is no one way to use the MVC Pattern.
+(Model Classes, View Classes and Controller classes)
+
+
+Model View Controller Pattern Components:
+- The Model contains the underlying data, state, and logic that the user wants to see and manipulate.
+- The View presents the model information to the user in the way they expect it and allows them to interact with it.
+- The Controller interprets the user's interacton with elements in the view and modifies the model itself.
+

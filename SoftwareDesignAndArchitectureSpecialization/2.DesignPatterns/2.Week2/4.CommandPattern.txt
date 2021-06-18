@@ -51,3 +51,4 @@ Source Code of Invoker:
 CommandManager commandManager = CommandManager.getInstance();
 Command command = new PasteCommand(aDocument, aPosition, aText);
 commandManager.invokeCommand(command);
+

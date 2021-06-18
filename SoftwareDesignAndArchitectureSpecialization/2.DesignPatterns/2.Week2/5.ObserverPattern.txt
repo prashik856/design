@@ -1,0 +1,71 @@
+OBSERVER PATTERN:
+
+example is Checking a blog. 
+
+Subject in our example is the blog which will notify all the people who are subscribed about it's new updates.
+
+Subject will keep a list of Observers (here, people who are subscribed). 
+
+
+We'll have a Subject superclass, that defines three methods:
+- Allow a new observer to subscribe
+- Allow a current observer to unsubscribe
+- Notify all observers about a new blog post
+
+Then we have Observer Interface.
+
+Then we also have Blog Class of Subject superclass
+
+And Subscriber class will implement the Observer Interface.
+
+There are two major roles: Subject and Observer.
+
+Blog and Subscriber relationship:
+
+All these relationship between Blog and Subscriber are the core relationships in Observer Design Pattern.
+
+Java code for the observer pattern:
+public class Subject {
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
+
+	public void registerObserver(Observer observer){
+		observers.add(observer);
+	}
+
+	public void unregisterObserver(Observer observer) {
+		observers.remove(observer);
+	}
+
+	public void notify() {
+		for(Observer o: observers) {
+			o.update();
+		}
+	}
+}
+
+
+public class Blog extends Subject {
+	private String state;
+	public String getState() {
+		return state;
+	}
+
+	// blog responsibilities
+	...
+}
+
+
+Observer Interface:
+public interface Observer {
+	public void update();
+}
+
+
+public class Subscriber implements Observer {
+	public void update() {
+		// get the blog change
+		...
+	}
+}
+
+

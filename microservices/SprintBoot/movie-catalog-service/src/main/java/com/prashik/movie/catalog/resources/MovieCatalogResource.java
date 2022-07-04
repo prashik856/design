@@ -3,6 +3,7 @@ package com.prashik.movie.catalog.resources;
 import com.prashik.movie.catalog.models.CatalogItem;
 import com.prashik.movie.catalog.models.Movie;
 import com.prashik.movie.catalog.models.Rating;
+import com.prashik.movie.catalog.models.UserRating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +34,8 @@ public class MovieCatalogResource {
     // The curly braces around userID tells springboot that it is a parameter.
     // the PathVariable Annotation tells getCatalog method to pass the userID variable
     // api request to method.
+
+    // Again, this method should not return a list
     @RequestMapping("/{userId}")
     List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
         // Create new resttemplate to store the response
@@ -47,17 +51,25 @@ public class MovieCatalogResource {
         // Before getting the Catalog, we need to make sure that
         // Get all rated movie IDs
         // Assume that this is the response that we got from movie-ratings-service
-        List<Rating> ratings = Arrays.asList(
-                new Rating("1234", 4),
-                new Rating("5678", 3)
-        );
+//        List<Rating> ratings = Arrays.asList(
+//                new Rating("1234", 4),
+//                new Rating("5678", 3)
+//        );
+
+        // Rather than having a hard coded value of ratings, let's say we want to make a rest call using restTemplate
+        // Which class do we pass? cannot pass a list.
+//        List<Rating> ratings = restTemplate.getForObject("http://localhost:8083/ratingsdata/users/" + userId,
+//                ParameterizedType<List<Rating>>())
+        // We need to use parameterizedType as above when we don't have a single class. This makes things complicated.
+        // Rather, we should always have a single class
+        UserRating userRating = restTemplate.getForObject("http://localhost:8083/ratingsdata/users/" + userId, UserRating.class);
 
         // For each movie ID, call move info and get movie details
         // These names and description whould actually come from the api.
         // We need to make a rest call to movie-info-service
         // then put these all together
         // An actual rest call is here.
-        return ratings.stream().map(rating -> {
+        return userRating.getRating().stream().map(rating -> {
             // We are doing a lot of things wrong here.
             // First thing is hardcoding the url. This is plainly bad. Why? -> It should actually be discovering the service.
             // The URL should be coming from somewhere else.

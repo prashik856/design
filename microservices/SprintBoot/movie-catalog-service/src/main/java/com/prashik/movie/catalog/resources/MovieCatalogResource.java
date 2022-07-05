@@ -62,7 +62,11 @@ public class MovieCatalogResource {
 //                ParameterizedType<List<Rating>>())
         // We need to use parameterizedType as above when we don't have a single class. This makes things complicated.
         // Rather, we should always have a single class
-        UserRating userRating = restTemplate.getForObject("http://localhost:8083/ratingsdata/users/" + userId, UserRating.class);
+//        UserRating userRating = restTemplate.getForObject("http://localhost:8083/ratingsdata/users/" + userId, UserRating.class);
+
+        // Rather than using a whole url, we will use service discovery here
+        UserRating userRating = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/" + userId,
+                UserRating.class);
 
         // For each movie ID, call move info and get movie details
         // These names and description whould actually come from the api.
@@ -73,7 +77,7 @@ public class MovieCatalogResource {
             // We are doing a lot of things wrong here.
             // First thing is hardcoding the url. This is plainly bad. Why? -> It should actually be discovering the service.
             // The URL should be coming from somewhere else.
-            Movie movie = restTemplate.getForObject("http://localhost:8082/movies/" + rating.getMovieId(), Movie.class);
+            Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
             // The call above is synchronous call. We can do the same with asynchronous call.
             // We just need to define a lambda, once we get the response. Lambda is just a things we need to do once
             // We get the response from api

@@ -2,6 +2,8 @@ package com.prashik.movie.catalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -9,9 +11,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 // Tells our java code that this is a sprint bool application
 // Most Sprint applications has main method.
 @SpringBootApplication
+@EnableEurekaClient
 public class MovieCatalogServiceApplication {
 
+    // loadBalanced annotation does service discovery with Load Balanced way
+    // Now, we need to provide a service to restTemplate so that it will know which service to call.
     @Bean
+    @LoadBalanced
     public RestTemplate getRestTemplate() {
         // With the help of the annotation, this method will execute only once
         // and then anyone who wants restTemplate object, this bean will be used.

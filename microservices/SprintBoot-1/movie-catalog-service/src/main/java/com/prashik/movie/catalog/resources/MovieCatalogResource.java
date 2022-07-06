@@ -1,5 +1,6 @@
 package com.prashik.movie.catalog.resources;
 
+import com.netflix.discovery.DiscoveryClient;
 import com.prashik.movie.catalog.models.CatalogItem;
 import com.prashik.movie.catalog.models.Movie;
 import com.prashik.movie.catalog.models.Rating;
@@ -28,6 +29,14 @@ public class MovieCatalogResource {
 
     @Autowired
     private WebClient.Builder webClientBuilder;
+
+    // Discovery Client Interface
+//    @Autowired
+//    private DiscoveryClient discoveryClient;
+    // If we have a look at this code, it has a method call getInstances, which returns all the service instances.
+    // We already have an instance of DiscoveryClient in our classpath.
+    // We can directly aurowire it to get the instance
+
 
     // We want Springboot to treat this method as an API
     // it should be available at /api/v1/catalog/[userId]

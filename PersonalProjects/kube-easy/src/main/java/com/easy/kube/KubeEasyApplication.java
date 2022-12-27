@@ -1,7 +1,10 @@
 package com.easy.kube;
 
+import com.easy.kube.model.AllKubernetesClusters;
+import com.easy.kube.model.Cluster;
 import com.easy.kube.model.Properties;
-import com.easy.kube.response.ClusterResponse;
+import com.easy.kube.response.AllClustersResponse;
+import com.easy.kube.response.AllNamespacesResponse;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
@@ -13,13 +16,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 public class KubeEasyApplication {
+
+    static final Logger LOG = LogManager.getLogger(KubeEasyApplication.class);
     @Bean
     public WebClient.Builder getWebClientBuilder() {
         return WebClient.builder();
     }
-
     @Bean
     public Properties getProperties() {
         System.out.println("Defining Properties Bean");
@@ -28,21 +37,47 @@ public class KubeEasyApplication {
     }
 
     @Bean
-    public ClusterResponse getClusterResponse(){
-        System.out.println("Defining cluster response bean");
-        return new ClusterResponse();
+    public AllKubernetesClusters getAllClusters() throws IOException {
+        LOG.info("Defining AllCluster Bean");
+        String kubeDirectory = System.getProperty("KUBE_DIRECTORY");
+        LOG.info("Getting all clusters from " + kubeDirectory + " directory.");
+        List<Cluster> allClusters= new ArrayList<>();
+        File folder = new File(kubeDirectory);
+        File[] allFiles = folder.listFiles();
+
+        assert allFiles != null;
+        for (File allFile : allFiles) {
+            if (allFile.isFile()) {
+                LOG.info("Adding cluster: " + allFile.getName());
+                Cluster cluster = new Cluster(allFile.getName(),
+                        kubeDirectory + "/" + allFile.getName());
+                allClusters.add(cluster);
+            }
+        }
+        return new AllKubernetesClusters(allClusters);
+    }
+
+    @Bean
+    public AllClustersResponse getAllClustersResponse(){
+        LOG.info("Defining all clusters response bean");
+        return new AllClustersResponse();
+    }
+
+    @Bean
+    public AllNamespacesResponse getAllNamespacesResponse() {
+        LOG.info("Defining all namespaces response bean");
+        return new AllNamespacesResponse();
     }
 
     public static void main(String[] args) {
         // Setup logging
-        final Logger LOG = LogManager.getLogger(KubeEasyApplication.class);
         LOG.info("Setting app Properties");
 
         LOG.info("Setting up default kube directory");
         final String DEFAULT_KUBE_DIRECTORY = "DEFAULT_KUBE_DIRECTORY";
         final String KUBE_DIRECTORY = "KUBE_DIRECTORY";
         final String userHome = System.getenv("HOME");
-        final String defaultKubeDirectory = userHome + "/.kube";
+        final String defaultKubeDirectory = userHome + "/.kube/kube-easy";
         String kubeDirectory;
         System.setProperty(DEFAULT_KUBE_DIRECTORY, defaultKubeDirectory);
 

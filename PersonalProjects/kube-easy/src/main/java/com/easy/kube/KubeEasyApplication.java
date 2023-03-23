@@ -4,6 +4,7 @@ import com.easy.kube.model.AllKubernetesClusters;
 import com.easy.kube.model.Cluster;
 import com.easy.kube.model.Properties;
 import com.easy.kube.response.AllClustersResponse;
+import com.easy.kube.response.AllJobsResponse;
 import com.easy.kube.response.AllNamespacesResponse;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
@@ -67,6 +68,12 @@ public class KubeEasyApplication {
     public AllNamespacesResponse getAllNamespacesResponse() {
         LOG.info("Defining all namespaces response bean");
         return new AllNamespacesResponse();
+    }
+
+    @Bean
+    public AllJobsResponse getAllJobsResponse() {
+        LOG.info("Defining all jobs response bean");
+        return new AllJobsResponse();
     }
 
     public static void main(String[] args) {

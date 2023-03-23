@@ -1,6 +1,7 @@
 package com.easy.kube.model;
 
 import io.kubernetes.client.openapi.ApiClient;
+import io.kubernetes.client.openapi.apis.BatchV1Api;
 import io.kubernetes.client.openapi.apis.CoreV1Api;
 import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.KubeConfig;
@@ -16,6 +17,7 @@ public class Cluster {
     private String kubeConfigPath;
     ApiClient apiClient;
     CoreV1Api api;
+    BatchV1Api batchV1Api;
     public Cluster(){}
 
     public String getKubeConfigPath() {
@@ -61,6 +63,14 @@ public class Cluster {
 
     public void setClusterName(String clusterName) {
         this.clusterName = clusterName;
+    }
+
+    public BatchV1Api getBatchV1Api() {
+        return batchV1Api;
+    }
+
+    public void setBatchV1Api(BatchV1Api batchV1Api) {
+        this.batchV1Api = batchV1Api;
     }
 
     public String[] getNamespaces() {

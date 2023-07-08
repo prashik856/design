@@ -1,0 +1,4 @@
+database:
+  username: microservice-tenant-registry
+  password: myDummyPass321
+  url: https://dummy-url.com

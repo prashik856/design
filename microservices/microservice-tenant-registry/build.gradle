@@ -9,12 +9,16 @@ version '1.0.0'
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs 'lib'
+    }
 }
 
 dependencies {
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.0'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'
     implementation 'org.springframework.boot:spring-boot-starter-web:3.1.1'
+    implementation name: 'mysql-connector-j-8.0.33'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

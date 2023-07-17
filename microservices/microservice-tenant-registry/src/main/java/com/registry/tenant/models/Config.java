@@ -30,6 +30,15 @@ public class Config {
     }
 
     /**
+     * Sets a new value of Database Object.
+     *
+     * @param database
+     * */
+    public void setDatabase(Database database) {
+        this.database = database;
+    }
+
+    /**
      * Returns Config object in json.
      *
      * @return config in json

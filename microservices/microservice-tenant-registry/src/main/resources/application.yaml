@@ -1,4 +1,4 @@
 database:
-  username: microservice-tenant-registry
-  password: myDummyPass321
-  url: https://dummy-url.com
+  username: microservice_tenant_registry
+  password: Oracle@123
+  url: "jdbc:mysql://localhost:3306/mysql"

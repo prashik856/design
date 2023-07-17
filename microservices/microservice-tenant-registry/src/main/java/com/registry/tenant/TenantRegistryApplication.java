@@ -7,17 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-
-@SuppressWarnings("checkstyle:MagicNumber")
+/**
+ * The Tenant Registry Application. The entry point class of application.
+ * */
 @SpringBootApplication
 @RestController
 class TenantRegistryApplication {
-
-    /**
-     * Private constructor so that this class is not instantiated.
-     * */
-    private TenantRegistryApplication() { }
-
     /**
      * Entrypoint of application.
      *

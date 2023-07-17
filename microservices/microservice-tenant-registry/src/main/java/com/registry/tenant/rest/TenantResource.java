@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -20,9 +21,16 @@ import java.util.logging.Logger;
  * */
 @RestController
 public class TenantResource {
+
+    /**
+     * Autowired Config.
+     * */
     @Autowired
     private Config config;
 
+    /**
+     * The logger.
+     * */
     public static Logger logger = Logger.getLogger(TenantResource.class.getName());
 
     /**
@@ -50,24 +58,38 @@ public class TenantResource {
                     }
                 }
                 tenants.clear();
-                tenants.add(responseTenant);
+                if(!Objects.equals(responseTenant, null)) {
+                    tenants.add(responseTenant);
+                }
             }
 
             // Build Proper Response
-            tenantResponse.setStatus(200);
-            tenantResponse.setReason("OK");
-            tenantResponse.setData(tenants);
+            createResponse(tenantResponse,
+                    200,
+                    "OK",
+                    tenants);
         } catch (SQLException e) {
             e.printStackTrace();
-            tenantResponse.setStatus(500);
-            tenantResponse.setReason("SQL Exception. Service not available.");
-            tenantResponse.setData(null);
+            createResponse(tenantResponse,
+                    500,
+                    "SQL Exception. Service not available.",
+                    new ArrayList<>());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            tenantResponse.setStatus(500);
-            tenantResponse.setReason("ClassNotFoundException. Service not available.");
-            tenantResponse.setData(null);
+            createResponse(tenantResponse,
+                    500,
+                    "ClassNotFoundException. Service not available.",
+                    new ArrayList<>());
         }
         return tenantResponse;
+    }
+
+    private void createResponse(TenantResponse tenantResponse,
+                                int status,
+                                String reason,
+                                List<Tenant> data) {
+        tenantResponse.setStatus(status);
+        tenantResponse.setReason(reason);
+        tenantResponse.setData(data);
     }
 }

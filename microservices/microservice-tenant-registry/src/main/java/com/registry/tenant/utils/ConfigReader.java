@@ -7,6 +7,10 @@ import com.registry.tenant.models.Config;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class ConfigReader. Used to read application config file.
+ *
+ * */
 public class ConfigReader {
     /**
      * The variable path.

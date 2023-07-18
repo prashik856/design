@@ -137,3 +137,9 @@ dependencies {
 }
 ```
 Test and build, we should now be able to use the mysql connector driver.
+
+Another approach to tackle this is to directly use mysql connector as a dependency.
+It is much easier.
+```groovy
+implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+```
